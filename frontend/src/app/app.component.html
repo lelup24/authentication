@@ -1,12 +1,12 @@
 <h1 *ngIf="isLoggedIn">Hello, {{name}}</h1>
 
-<button mat-raised-button (click)="logout()">Logout</button>
-<button mat-raised-button (click)="fetchUnsecure()">Fetch unsecure</button>
+<button (click)="logout()" mat-raised-button>Logout</button>
+<button (click)="fetchUnsecure()" mat-raised-button>Fetch unsecure</button>
 <div>{{unsecure}}</div>
-<button mat-raised-button (click)="fetchSecure()">Fetch secure</button>
+<button (click)="fetchSecure()" mat-raised-button>Fetch secure</button>
 <div>{{secure}}</div>
 
-<form *ngIf="!isLoggedIn" [formGroup]="loginForm" (ngSubmit)="login()">
+<form (ngSubmit)="login()" *ngIf="!isLoggedIn" [formGroup]="loginForm">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Sign in</mat-card-title>
@@ -14,20 +14,20 @@
     <mat-card-content>
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username">
+        <input formControlName="username" matInput>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password">
+        <input formControlName="password" matInput>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Sign in</button>
+      <button color="primary" mat-raised-button type="submit">Sign in</button>
     </mat-card-actions>
   </mat-card>
 </form>
 
-<form [formGroup]="registrationForm" (ngSubmit)="register()">
+<form (ngSubmit)="register()" [formGroup]="registrationForm">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
@@ -35,15 +35,15 @@
     <mat-card-content>
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username">
+        <input formControlName="username" matInput>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password">
+        <input formControlName="password" matInput>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Register</button>
+      <button color="primary" mat-raised-button type="submit">Register</button>
     </mat-card-actions>
   </mat-card>
 </form>

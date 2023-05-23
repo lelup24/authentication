@@ -49,13 +49,6 @@ export class AppComponent implements OnInit {
       });
   }
 
-  private setName() {
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(localStorage.getItem("auth-token") || "");
-    this.name = decodedToken.sub;
-    console.log(decodedToken)
-  }
-
   register() {
     this.appService.register(this.registrationForm.value.username, this.registrationForm.value.password)
       .pipe(take(1))
@@ -87,5 +80,12 @@ export class AppComponent implements OnInit {
           this.secure = err.statusText;
         }
       });
+  }
+
+  private setName() {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(localStorage.getItem("auth-token") || "");
+    this.name = decodedToken.sub;
+    console.log(decodedToken)
   }
 }

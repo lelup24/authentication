@@ -1,7 +1,6 @@
 package de.tutorial.authentication.backend.user;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
