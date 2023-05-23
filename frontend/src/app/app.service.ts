@@ -9,14 +9,22 @@ export class AppService {
 
   http = inject(HttpClient);
 
-  login(username: string, password: string): Observable<void> {
-    return this.http.post<void>('/api/login', {username, password});
-  }
-
-  register(username: string, password: string): Observable<HttpResponse<any>> {
-    return this.http.post<HttpResponse<any>>('/api/register', {username, password}, {
+  login(username: string, password: string): Observable<HttpResponse<void>> {
+    return this.http.post<void>('/api/v1/login', {username, password}, {
       observe: 'response'
     });
+  }
+
+  register(username: string, password: string): Observable<void> {
+    return this.http.post<void>('/api/v1/register', {username, password},);
+  }
+
+  fetchSecureEndpoint(): Observable<{ msg: string }> {
+    return this.http.get<{ msg: string }>('/api/v1/secured');
+  }
+
+  fetchUnsecureEndpoint(): Observable<{ msg: string }> {
+    return this.http.get<{ msg: string }>('/api/v1/unsecured');
   }
 
 }

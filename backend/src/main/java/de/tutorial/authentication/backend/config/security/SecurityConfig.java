@@ -23,7 +23,9 @@ public class SecurityConfig {
   private final JwtTokenFilter jwtTokenFilter;
 
   public SecurityConfig(
-          final JwtUtil jwtUtil, final MyUserDetailsService myUserDetailsService, final JwtTokenFilter jwtTokenFilter) {
+      final JwtUtil jwtUtil,
+      final MyUserDetailsService myUserDetailsService,
+      final JwtTokenFilter jwtTokenFilter) {
     this.jwtUtil = jwtUtil;
     this.myUserDetailsService = myUserDetailsService;
     this.jwtTokenFilter = jwtTokenFilter;
@@ -48,7 +50,11 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
         .addFilter(userAuthenticationFilter)
         .authorizeHttpRequests(
-            a -> a.requestMatchers("/api/v1/login", "/api/v1/unsecured").permitAll().anyRequest().authenticated())
+            a ->
+                a.requestMatchers("/api/v1/login", "/api/v1/register", "/api/v1/unsecured")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
         .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();

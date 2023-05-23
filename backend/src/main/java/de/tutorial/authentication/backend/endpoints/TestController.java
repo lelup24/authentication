@@ -3,11 +3,9 @@ package de.tutorial.authentication.backend.endpoints;
 import de.tutorial.authentication.backend.user.UserRegisterationDto;
 import de.tutorial.authentication.backend.user.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -19,20 +17,20 @@ public class TestController {
         this.userService = userService;
     }
 
-    @GetMapping("/register")
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> register(@RequestBody UserRegisterationDto userRegisterationDto) {
         userService.register(userRegisterationDto);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/secured")
+    @GetMapping(value = "/secured", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> secured() {
-        return new ResponseEntity<>("Hello secure World", HttpStatus.OK);
+        return new ResponseEntity<>("{\"msg\":\"Hello secure World\"}", HttpStatus.OK);
     }
 
-    @GetMapping("/unsecured")
+    @GetMapping(value = "/unsecured", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> unsecured() {
-        return new ResponseEntity<>("Hello unsecure World", HttpStatus.OK);
+        return new ResponseEntity<>("{\"msg\":\"Hello unsecure World\"}", HttpStatus.OK);
     }
 
 }

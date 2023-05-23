@@ -1,4 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  --max-width: unset;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 12px !important;
+}
+
+
+.material-icons {
+  font-family: 'Material Icons', serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+::ng-deep .mat-form-field {
+  background-color: white !important;
+}
+
+$md-mcgpalette0: (
+  50: #e0eaec,
+  100: #b3c9cf,
+  200: #80a6af,
+  300: #4d828e,
+  400: #266776,
+  500: #004c5e,
+  600: #004556,
+  700: #003c4c,
+  800: #003342,
+  900: #002431,
+  A100: #69caff,
+  A200: #36b8ff,
+  A400: #03a6ff,
+  A700: #0097e9,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$primary: mat.define-palette($md-mcgpalette0, 500, A100, A400);
+$warn: mat.define-palette(mat.$red-palette);
+$accent: mat.define-palette(mat.$yellow-palette, 800);
+
+$my-custom-level: mat.define-typography-level(
+  $font-family: Roboto,
+  $font-weight: 400,
+  $font-size: 1rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$typography: mat.define-typography-config(
+  $font-family: 'Roboto, "Helvetica Neue", sans-serif',
+  $body-1: mat.define-typography-level(14px),
+  $body-2: mat.define-typography-level(14px),
+  $button: mat.define-typography-level(14px),
+);
+
+$theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $primary,
+        accent: $accent,
+        warn: $warn,
+      ),
+      typography: $typography,
+    )
+);
+@include mat.all-component-typographies($typography);
+@include mat.all-component-colors($theme);
