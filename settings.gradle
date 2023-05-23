@@ -1,0 +1,4 @@
+rootProject.name = 'authentication'
+include 'backend'
+include 'frontend'
+
