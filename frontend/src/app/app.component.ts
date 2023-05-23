@@ -95,6 +95,6 @@ export class AppComponent implements OnInit {
     const decodedToken = helper.decodeToken(
       localStorage.getItem('auth-token') || ''
     );
-    this.name = decodedToken.sub;
+    this.name = decodedToken?.sub;
   }
 }
