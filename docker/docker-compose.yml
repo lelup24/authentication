@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  tutorial_db:
+    image: postgres
+    container_name: tutorial_db
+    volumes:
+      - tutorial_db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: tutorial
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "6432:5432"
+
+
+volumes:
+  tutorial_db_data:
+    driver: local
