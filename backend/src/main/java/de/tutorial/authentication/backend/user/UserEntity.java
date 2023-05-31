@@ -2,7 +2,6 @@ package de.tutorial.authentication.backend.user;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -16,7 +15,7 @@ public class UserEntity {
     private String password;
 
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = { @JoinColumn(name = "user_id") },
@@ -58,18 +57,5 @@ public class UserEntity {
     public UserEntity setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
         return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(roles, that.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, roles);
     }
 }

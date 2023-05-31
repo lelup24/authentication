@@ -34,7 +34,7 @@ public class MyUserDetailsService implements UserDetailsService {
     UserEntity user = userEntityOptional.get();
 
     List<SimpleGrantedAuthority> roles =
-        user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).toList();
+        user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName())).toList();
 
     return new User(username, user.getPassword(), roles);
   }

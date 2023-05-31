@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   name = '';
   unsecure!: string;
   secure!: string;
+  secureAdmin!: string;
   showRegistration = false;
 
   ngOnInit(): void {
@@ -87,6 +88,18 @@ export class AppComponent implements OnInit {
         next: (response) => (this.secure = response.msg),
         error: (err) => {
           this.secure = err.statusText;
+        },
+      });
+  }
+
+  fetchSecureAdmin() {
+    this.appService
+      .fetchSecureAdminEndpoint()
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => (this.secureAdmin = response.msg),
+        error: (err) => {
+          this.secureAdmin = err.statusText;
         },
       });
   }

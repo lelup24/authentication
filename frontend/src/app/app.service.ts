@@ -29,6 +29,10 @@ export class AppService {
     return this.http.get<{ msg: string }>('/api/v1/secured');
   }
 
+  fetchSecureAdminEndpoint(): Observable<{ msg: string }> {
+    return this.http.get<{ msg: string }>('/api/v1/secured-admin');
+  }
+
   fetchUnsecureEndpoint(): Observable<{ msg: string }> {
     return this.http.get<{ msg: string }>('/api/v1/unsecured');
   }

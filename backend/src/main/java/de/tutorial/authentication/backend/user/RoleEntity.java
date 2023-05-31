@@ -25,4 +25,23 @@ public class RoleEntity {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public RoleEntity setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Set<UserEntity> getUsers() {
+        return users;
+    }
+
+    public RoleEntity setUsers(Set<UserEntity> users) {
+        this.users = users;
+        return this;
+    }
+    
 }

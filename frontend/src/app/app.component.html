@@ -5,6 +5,8 @@
 <div>{{unsecure}}</div>
 <button (click)="fetchSecure()" mat-raised-button>Fetch secure</button>
 <div>{{secure}}</div>
+<button (click)="fetchSecureAdmin()" mat-raised-button>Fetch data for admin</button>
+<div>{{secureAdmin}}</div>
 
 <form (ngSubmit)="login()" *ngIf="!isLoggedIn && !showRegistration" [formGroup]="loginForm">
   <mat-card>
