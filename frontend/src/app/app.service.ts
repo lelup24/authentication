@@ -19,7 +19,10 @@ export class AppService {
   }
 
   register(username: string, password: string): Observable<void> {
-    return this.http.post<void>('/api/v1/register', { username, password });
+    return this.http.post<void>('/api/v1/register', {
+      username,
+      password,
+    });
   }
 
   fetchSecureEndpoint(): Observable<{ msg: string }> {

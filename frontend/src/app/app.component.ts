@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   name = '';
   unsecure!: string;
   secure!: string;
+  showRegistration = false;
 
   ngOnInit(): void {
     if (localStorage.getItem('auth-token') !== '') {

@@ -6,7 +6,7 @@
 <button (click)="fetchSecure()" mat-raised-button>Fetch secure</button>
 <div>{{secure}}</div>
 
-<form (ngSubmit)="login()" *ngIf="!isLoggedIn" [formGroup]="loginForm">
+<form (ngSubmit)="login()" *ngIf="!isLoggedIn && !showRegistration" [formGroup]="loginForm">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Sign in</mat-card-title>
@@ -21,13 +21,14 @@
         <input formControlName="password" matInput type="password">
       </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)="showRegistration = true">Register</button>
       <button color="primary" mat-raised-button type="submit">Sign in</button>
     </mat-card-actions>
   </mat-card>
 </form>
 
-<form (ngSubmit)="register()" [formGroup]="registrationForm">
+<form (ngSubmit)="register()" *ngIf="showRegistration" [formGroup]="registrationForm">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
@@ -42,7 +43,8 @@
         <input formControlName="password" matInput type="password">
       </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)="showRegistration = false">Sign-in</button>
       <button color="primary" mat-raised-button type="submit">Register</button>
     </mat-card-actions>
   </mat-card>
