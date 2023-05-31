@@ -1,4 +1,4 @@
-<h1 *ngIf="isLoggedIn">Hello, {{name}}</h1>
+<h1 *ngIf="isLoggedIn">Hello, {{name}} ({{roles}})</h1>
 
 <button *ngIf="isLoggedIn" (click)="logout()" mat-raised-button>Logout</button>
 <button (click)="fetchUnsecure()" mat-raised-button>Fetch unsecure</button>

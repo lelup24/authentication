@@ -29,7 +29,6 @@ public class JwtUtil {
   private RSAPrivateKey privateKey;
   private RSAPublicKey publicKey;
   private final Algorithm algorithm;
-
   private final RsaProperties rsaProperties;
 
   JwtUtil(RsaProperties rsaProperties) {

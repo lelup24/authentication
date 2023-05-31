@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean = false;
   registrationSuccess: boolean = false;
   name = '';
+  roles: string[] = [];
   unsecure!: string;
   secure!: string;
   secureAdmin!: string;
@@ -110,5 +111,6 @@ export class AppComponent implements OnInit {
       localStorage.getItem('auth-token') || ''
     );
     this.name = decodedToken?.sub;
+    this.roles = decodedToken['roles'];
   }
 }
