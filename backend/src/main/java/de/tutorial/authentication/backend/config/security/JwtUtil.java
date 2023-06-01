@@ -50,7 +50,7 @@ public class JwtUtil {
     
     return JWT.create()
         .withSubject(((User) authResult.getPrincipal()).getUsername())
-        .withIssuer("me")
+        .withIssuer("tutorial-backend")
         .withExpiresAt(new Date(new Date().getTime() + 1000000))
         .withIssuedAt(new Date())
         .withClaim("roles", roles)
