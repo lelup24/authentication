@@ -116,7 +116,7 @@ sudo -u postgres psql
 ssh -L 5555:localhost:5432 tutorial
 ```
 
-### Spring
+### Backend (Spring Boot)
 
 ```bash
 mkdir /var/backend
@@ -149,7 +149,7 @@ sudo systemctl start tutorial.service
 curl http://localhost:8080/api/v1/unsecured
 ```
 
-### Frontend
+### Frontend (Angular)
 
 ```bash
 sudo apt install nginx
@@ -157,8 +157,6 @@ sudo ufw allow 'Nginx Full'
 sudo ufw allow 22
 systemctl status nginx
 ```
-
-### Visit Page
 
 ```bash
 cd /var/www/html/
