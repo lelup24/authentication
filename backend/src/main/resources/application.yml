@@ -1,3 +1,5 @@
+server:
+  port: ${SERVER_PORT:8080}
 spring:
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:6432/tutorial}
