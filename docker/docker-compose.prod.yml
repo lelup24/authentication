@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  angular:
+    image: lelup24/tutorial-frontend
+    restart: always
+    ports:
+      - "80:80"
+  #      - "443:443"
+
+  spring-boot:
+    image: lelup24/tutorial-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://tutorial_db:5432/tutorial
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    restart: always
+    depends_on:
+      - angular
+      - tutorial_db
+
+  tutorial_db:
+    image: postgres
+    container_name: tutorial_db
+    volumes:
+      - tutorial_db_prod_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: tutorial
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "6432:5432"
+
+
+volumes:
+  tutorial_db_prod_data:
+    driver: local

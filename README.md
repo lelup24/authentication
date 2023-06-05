@@ -216,3 +216,71 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot --nginx
 ```
+
+## Deploy with Docker
+
+### install docker
+
+```bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+```
+
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+echo \
+"deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+"$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### build
+
+```bash
+cd backend
+docker build -t tutorial-backend:latest .
+```
+
+```bash
+cd frontend
+docker build -t tutorial-frontend:latest .
+```
+
+### publish
+
+````bash
+docker login
+````
+
+```bash
+docker tag tutorial-backend:latest lelup24/tutorial-backend:latest
+```
+
+````bash
+docker push lelup24/tutorial-backend:latest
+````
+
+```bash
+docker tag tutorial-frontend:latest lelup24/tutorial-frontend:latest
+```
+
+```bash
+docker push lelup24/tutorial-frontend:latest
+```
+
+```bash
+docker compose -f docker-compose.prod.yml up
+```
