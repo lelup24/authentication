@@ -44,20 +44,20 @@ openssl rsa -pubout -in private_key.pem -out public_key.pem
 
 # Deployment
 
-## Generate Server
+## Server Configuration
 
+### Create new sudo user
 ```bash
 adduser peter
 usermod -aG sudo peter
 ```
 
-### SSH
-
+### generate SSH-key
 ```bash
 ssh-keygen -b 4096
 ```
 
-### Login to Server
+Login to Server
 
 ```bash
 mkdir -p ~/.ssh
@@ -72,7 +72,7 @@ chmod -R 700 ~/.ssh
 sudo nano ~/.ssh/config
 ```
 
-Füge den folgenden Inhalt hinzu:
+Add this to the config-file
 
 ```
 Host tutorial
@@ -87,7 +87,7 @@ User peter
 sudo nano /etc/ssh/sshd_config
 ```
 
-Setze den folgenden Wert:
+Change this
 
 ```
 PasswordAuthentication no
