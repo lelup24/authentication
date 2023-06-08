@@ -4,6 +4,7 @@ import org.apache.catalina.filters.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,17 +38,13 @@ public class SecurityConfig {
   }
 
   @Bean
-  CorsFilter corsFilter() {
-    return new CorsFilter();
-  }
-
-  @Bean
   public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
     final UserAuthenticationFilter userAuthenticationFilter =
         new UserAuthenticationFilter(jwtUtil, daoAuthenticationProvider());
     userAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
 
-    http.csrf(AbstractHttpConfigurer::disable)
+    http.cors(Customizer.withDefaults())
+        .csrf(AbstractHttpConfigurer::disable)
         .addFilter(userAuthenticationFilter)
         .authorizeHttpRequests(
             a ->
